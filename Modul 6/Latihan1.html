@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Sederhana Modern</title>
+    <link rel="stylesheet" href="style1.css"> 
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>Kalkulator Sederhana</h1>
+
+        <input type="number" id="angka1" placeholder="Angka Pertama">
+        <input type="number" id="angka2" placeholder="Angka Kedua">
+        
+        <div class="button-group">
+            <button class="op-tambah" onclick="hitung('tambah')">+</button>
+            <button class="op-kurang" onclick="hitung('kurang')">-</button>
+            <button class="op-kali" onclick="hitung('kali')">x</button>
+            <button class="op-bagi" onclick="hitung('bagi')">÷</button>
+        </div>
+
+        <div id="hasil">Hasil: 0</div>
+    </div>
+
+    <script>
+        function hitung(operasi) {
+            let a = parseFloat(document.getElementById('angka1').value);
+            let b = parseFloat(document.getElementById('angka2').value);
+            let hasil;
+
+            if (isNaN(a) || isNaN(b)) {
+                document.getElementById('hasil').innerHTML = 'Masukkan angka!';
+                return;
+            }
+
+            switch (operasi) {
+                case 'tambah':
+                    hasil = a + b;
+                    break;
+                case 'kurang':
+                    hasil = a - b;
+                    break;
+                case 'kali':
+                    hasil = a * b;
+                    break;
+                case 'bagi':
+                    if (b === 0) {
+                        document.getElementById('hasil').innerHTML = 'Tidak bisa dibagi 0!';
+                        return;
+                    }
+                    hasil = a / b;
+                    break;
+                default:
+                    hasil = 'Error';
+            }
+
+            document.getElementById('hasil').innerHTML = `Hasil: ${hasil.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
